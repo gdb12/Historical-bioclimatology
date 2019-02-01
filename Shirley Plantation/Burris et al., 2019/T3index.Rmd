@@ -1,0 +1,31 @@
+---
+title: "T3index"
+author: "Greg Burris"
+date: "February 1, 2019"
+output: html_document
+---
+
+This brings in the data and set the wd.
+``` {r bringin}
+
+setwd("E:/repositories/bioclimate")
+loc="E:/repositories/bioclimate/T3index.csv"
+T3index.df= read.csv(loc, header = TRUE)
+T3index.df= as.data.frame(T3index.df)
+``` 
+
+load packages
+```{r}
+library(ggplot2)
+library(lubridate)
+```
+
+Plotting Three-Point Temperature Index 30 day sum Ratio with breaks for discontinuities 
+```{r figure}
+
+ggplot(T3index.df, aes(x = as.Date(Date), y = index.mean.roll)) + # names(annual.df)
+  geom_line() +
+  xlab("Date") +
+  ylab("Temperature Index") +
+  theme_bw(base_size = 18)
+```
